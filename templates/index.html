@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Academic Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-overlay"></div>
+
+    <!-- HEADER -->
+    <header class="app-header">
+        <div class="title-group">
+            <h1>🎓 Smart Academic Companion</h1>
+            <p>Your AI-powered academic partner for content, quizzes & more</p>
+        </div>
+        <button id="themeToggle" class="theme-toggle">🌙</button>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-container">
+        <!-- SIDE PANEL -->
+        <section class="side-panel">
+            <h2>🧠 Features</h2>
+            <ul>
+                <li><strong>Generate:</strong> Create detailed academic write-ups</li>
+                <li><strong>Summarize:</strong> Condense long content</li>
+                <li><strong>Categorize:</strong> Identify subject and theme</li>
+                <li><strong>Explain:</strong> Clarify complex topics</li>
+                <li><strong>Quiz:</strong> Generate topic-based questions</li>
+            </ul>
+
+            <div class="info-box">
+                <p><b>Tip:</b> Use <kbd>Ctrl + Enter</kbd> to run faster!</p>
+            </div>
+
+            <!-- ✅ NEW: Rotating Tip Box -->
+            <div class="tip-box" id="tipBox">
+                💬 <em>Did you know?</em><br>
+                <span id="tipText">Learning one new concept a day boosts retention by 40%!</span>
+            </div>
+        </section>
+
+        <!-- MAIN PANEL -->
+        <section class="main-panel">
+            <div class="task-selector">
+                <button class="task-btn active" data-task="generate">📝 Generate</button>
+                <button class="task-btn" data-task="summarize">📄 Summarize</button>
+                <button class="task-btn" data-task="categorize">🏷️ Categorize</button>
+                <button class="task-btn" data-task="explain">💡 Explain</button>
+                <button class="task-btn" data-task="quiz">🎯 Quiz</button>
+            </div>
+
+            <div class="input-area">
+                <textarea 
+                    id="contentInput" 
+                    placeholder="Enter a topic or academic text to process..."
+                ></textarea>
+                <button id="processBtn" class="process-btn">🚀 Process</button>
+            </div>
+
+            <div class="output-area">
+                <div class="output-header">
+                    <h3>Result</h3>
+                    <div class="output-tools">
+                        <button id="copyBtn">📋 Copy</button>
+                        <button id="downloadBtn">⬇️ Download</button>
+                        <span id="wordCount"></span>
+                    </div>
+                </div>
+
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Working on your request...</p>
+                </div>
+
+                <div id="outputContent" class="output-content">
+                    Results will appear here once ready.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2025 Smart Academic Companion | Built by Students, Powered by Gemini</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <!-- ✅ New Script for Rotating Tips -->
+    <script>
+        const tips = [
+            "Learning one new concept a day boosts retention by 40%.",
+            "Summarizing notes improves memory recall.",
+            "AI tools help students save up to 30% study time.",
+            "Organize your content for better focus and results.",
+            "Consistent short study sessions outperform long cramming."
+        ];
+
+        let tipIndex = 0;
+        setInterval(() => {
+            tipIndex = (tipIndex + 1) % tips.length;
+            document.getElementById("tipText").textContent = tips[tipIndex];
+        }, 5000);
+    </script>
+</body>
+</html>
